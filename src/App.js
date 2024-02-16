@@ -1,9 +1,6 @@
 import { useState } from "react";
 
 function Square({ value, onSquareClick }) {
-
-
-
   return <div>
     <button className="square" onClick={onSquareClick} >{value}</button></div>
 }
@@ -13,11 +10,14 @@ function Square({ value, onSquareClick }) {
 export default function Board() {
   const [squares, setsquares] = useState(Array(9).fill(null));
   const [xIsNext, setxIsNext] = useState(true);
+
   function handleClick(i) {
-    if(squares[i] ||calculateWinner(squares)){
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
+
     const nextSquares = squares.slice();
+
     if (xIsNext) {
       nextSquares[i] = "X";
     } else {
@@ -37,6 +37,7 @@ export default function Board() {
   }
   return (
     <>
+      <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
